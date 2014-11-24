@@ -7,8 +7,9 @@ folder <- paste0(getwd(),"/data/Datos.csv")
 datos <- read.csv(folder, sep=";", stringsAsFactors=FALSE)
 datos <- na.omit(datos) # listwise deletion of missing
 
-keeps <- c("imagenes","textos","videos","sonidos","urls","no.media")
+keeps <- c("imagenes","textos", "sonidos","urls","no.media")
 mydata <- datos[keeps]
+#mydata <- scale(mydata)
 
 # Matriz de correlación
 r <- cor(mydata)
@@ -39,19 +40,19 @@ result <- PCA(mydata) # graphs generated automatically
 
 # Varimax Rotated Principal Components
 # retaining 5 components 
-fit <- principal(mydata, nfactors=3, rotate="varimax")
+fit <- principal(mydata, nfactors=2, rotate="varimax")
 print(fit) # print results 
 
 # Maximum Likelihood Factor Analysis
-# entering raw data and extracting 3 factors, 
+# entering raw data and extracting 2 factors, 
 # with varimax rotation 
-fit <- factanal(mydata, 3, rotation="varimax")
-print(fit, digits=2, cutoff=.3, sort=TRUE)
+fit <- factanal(mydata, 2, rotation="varimax")
+print(fit, digits=2, cutoff=.2, sort=TRUE)
 # plot factor 1 by factor 2 
 load <- fit$loadings[,1:2] 
 plot(load,type="n") # set up plot 
 text(load,labels=names(mydata),cex=.7) # add variable names 
 
 # Principal Axis Factor Analysis
-fit <- fa(mydata,fm="pa", nfactors=3, rotate="varimax")
+fit <- fa(mydata,fm="pa", nfactors=2, rotate="varimax")
 print(fit) # print results 
