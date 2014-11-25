@@ -6,7 +6,7 @@ datos <- read.csv(folder, sep=";", stringsAsFactors=FALSE)
 datos <- na.omit(datos) # listwise deletion of missing
 
 # Vemos las variables
-keeps <- c("imagenes","textos","videos","sonidos","urls","no.media")
+keeps <- c("imagenes","textos","videos","sonidos","urls","no_media")
 nodos <- datos[keeps]
 
 # Estimamos el número de componentes
@@ -19,3 +19,6 @@ res.pca2 = PCA(nodos, scale.unit = TRUE, ncp = 2, graph = TRUE)
 
 # Vemos la significancia
 dimdesc(res.pca1, axes = c(1, 2))
+
+# Resumen
+summary(res.pca2)
