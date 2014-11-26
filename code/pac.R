@@ -6,7 +6,7 @@ datos <- read.csv(folder, sep=";", stringsAsFactors=FALSE)
 datos <- na.omit(datos) # listwise deletion of missing
 
 # Vemos las variables
-keeps <- c("imagenes","textos","videos","sonidos","urls","no_media")
+keeps <- c("images","texts","videos","sounds","urls","no_media")
 nodos <- datos[keeps]
 
 # Estimamos el número de componentes

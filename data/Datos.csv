@@ -1,4 +1,4 @@
-id;autor;tema;autor_id;tema_id;nodos;imagenes;videos;sonidos;textos;urls;no_media
+id;autor;tema;autor_id;tema_id;nodes;images;videos;sounds;texts;urls;no_media
 1;Wilde;Amor;8;1;11;2;2;0;4;3;0
 2;Bombal;Amor;1;1;9;1;2;1;1;3;1
 3;Donoso;Soledad;4;7;8;3;2;1;1;1;0
