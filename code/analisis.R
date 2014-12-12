@@ -4,6 +4,7 @@ library(relaimpo)
 library(MASS)
 library(leaps)
 library(car)
+library(matrixStats)
 
 folder <- paste0(getwd(),"/data/DatosCompletos.csv")
 
@@ -12,8 +13,17 @@ datos <- na.omit(datos) # listwise deletion of missing
 datos <- datos[datos$year<2013, ]
 
 # Vemos las variables
-keeps <- c("images","texts","videos","sounds","urls","no_media")
+keeps <- c("nodes", "images","texts","videos","sounds","urls","no_media")
 nodos <- datos[keeps]
+
+colMeans(nodos)
+sd(nodos$nodes)
+sd(nodos$images)
+sd(nodos$videos)
+sd(nodos$sounds)
+sd(nodos$texts)
+sd(nodos$urls)
+sd(nodos$no_media)
 
 # Correlations/covariances among numeric variables in 
 # data frame mtcars. Use listwise deletion of missing data. 
@@ -57,7 +67,7 @@ step$anova # display results
 
 # All Subsets Regression
 attach(datos)
-leaps<-regsubsets(nodos~imagenes+videos+sonidos+textos+urls,data=datos,nbest=10)
+leaps<-regsubsets(nodos~images+videos+sounds+texts+urls,data=datos,nbest=10)
 # view results 
 summary(leaps)
 # plot a table of models showing variables in each model.
