@@ -12,19 +12,19 @@ datos <- na.omit(datos) # listwise deletion of missing
 datos <- datos[datos$year<2013, ]
 
 # Vemos las variables
-keeps <- c("imagenes","textos","videos","sonidos","urls","no_media")
+keeps <- c("images","texts","videos","sounds","urls","no_media")
 nodos <- datos[keeps]
 
 # Correlations/covariances among numeric variables in 
 # data frame mtcars. Use listwise deletion of missing data. 
-cor(nodos, method="pearson") 
+cor(nodos, method="spearman") 
 cov(nodos) 
 
 # Correlations with significance levels
 rcorr(as.matrix(nodos), type="pearson") 
 
 # Multiple Linear Regression Example 
-fit <- lm(nodos ~ imagenes + videos + sonidos + textos + urls, data=datos)
+fit <- lm(nodes ~ images + videos + sounds + texts + urls, data=datos)
 summary(fit) # show results
 #layout(matrix(c(1,2,3,4),2,2)) # optional 4 graphs/page 
 plot(fit)
@@ -43,9 +43,9 @@ theta.fit <- function(x,y){lsfit(x,y)}
 theta.predict <- function(fit,x){cbind(1,x)%*%fit$coef} 
 
 # matrix of predictors
-X <- as.matrix(datos[c("imagenes","videos","sonidos", "textos", "urls")])
+X <- as.matrix(datos[c("images","texts","videos","sounds","urls")])
 # vector of predicted values
-y <- as.matrix(datos[c("nodos")]) 
+y <- as.matrix(datos[c("nodes")]) 
 
 results <- crossval(X,y,theta.fit,theta.predict,ngroup=10)
 cor(y, fit$fitted.values)**2 # raw R2 
